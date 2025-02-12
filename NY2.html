@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Виртуальная Открытка</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        #canvas {
+            border: 1px solid #ccc;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Создайте свою виртуальную открытку!</h1>
+
+<!-- Выбор дизайна открытки -->
+<label for="design">Выберите дизайн:</label>
+<select id="design">
+    <option value="design1">Дизайн 1</option>
+    <option value="design2">Дизайн 2</option>
+</select>
+
+<br><br>
+
+<!-- Поле для ввода текста -->
+<label for="text">Ваш текст:</label>
+<input type="text" id="text" placeholder="Введите ваше сообщение" />
+
+<br><br>
+
+<!-- Кнопка для отображения открытки -->
+<button onclick="drawCard()">Создать открытку</button>
+
+<br><br>
+
+<!-- Полотно для рисования -->
+<canvas id="canvas" width="400" height="300"></canvas>
+
+<br><br>
+
+<!-- Кнопка для отправки открытки по электронной почте -->
+<button onclick="sendCard()">Отправить открытку</button>
+
+<script>
+    function drawCard() {
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+        const text = document.getElementById('text').value;
+        const design = document.getElementById('design').value;
+
+        ctx.clearRect(0, 0, canvas.width, canvas.height); // Очистка канваса
+
+        // Выбор дизайна
+        if (design === 'design1') {
+            ctx.fillStyle = '#FFDDC1'; // Светло-розовый фон
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = '#D95B13'; // Цвет текста
+        } else {
+            ctx.fillStyle = '#C1E1FF'; // Светло-голубой фон
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = '#0A74DA'; // Цвет текста
+        }
+
+        ctx.font = '20px Arial';
+        ctx.fillText(text, 50, 150); // Позиция текста
+    }
+
+</script>
+
+</body>
+</html>
